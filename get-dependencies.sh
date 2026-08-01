@@ -34,7 +34,7 @@ echo "$VERSION" > ~/version
 
 mkdir -p ./AppDir/bin
 cd ./Ghostship
-#patch -Np1 -i "../ghostship-fix-mtxf_copy-incorrect-values.patch"
+patch -Np1 -i "../ghostship-fix-mtxf_copy-incorrect-values.patch"
 cmake . \
     -Bbuild \
     -GNinja \
