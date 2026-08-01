@@ -38,7 +38,8 @@ patch -Np1 -i "../ghostship-fix-mtxf_copy-incorrect-values.patch"
 cmake . \
     -Bbuild \
     -GNinja \
-    -DNON_PORTABLE=On
+    -DNON_PORTABLE=On \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 cmake --build build --config Release
 cmake --build build --config Release --target GeneratePortO2R
 
