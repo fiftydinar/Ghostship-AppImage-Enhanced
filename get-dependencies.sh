@@ -46,6 +46,8 @@ if [ "$ARCH" = "aarch64" ]; then
         libultraship/cmake/dependencies/common.cmake
     grep -q 'arm64-libtcc1-usegcc=yes' \
         libultraship/cmake/dependencies/common.cmake
+    sed -i 's|__arm64_clear_cache(beg, end);|__builtin___clear_cache(beg, end);|' \
+        lib/armflush.c
     LINKER_FLAGS="-DCMAKE_EXE_LINKER_FLAGS=-Wl,--no-eh-frame-hdr"
 fi
 
