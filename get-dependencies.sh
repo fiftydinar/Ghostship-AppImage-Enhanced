@@ -15,6 +15,7 @@ pacman -Syu --noconfirm \
     nlohmann-json \
     sdl2          \
     spdlog        \
+    tcc           \
     tinyxml2
 
 echo "Installing debloated packages..."
