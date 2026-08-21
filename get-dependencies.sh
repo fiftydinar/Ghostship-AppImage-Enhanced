@@ -56,6 +56,16 @@ cmake . \
     -GNinja \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     $LINKER_FLAGS
+
+# armflush.c calls __arm64_clear_cache(), a tcc-only builtin. With
+# arm64-libtcc1-usegcc=yes the file is compiled by GCC instead, where
+# that is an implicit-declaration error (GCC 14+). The tinycc sources
+# only exist after configure (FetchContent), so patch them here.
+if [ "$ARCH" = "aarch64" ]; then
+    sed -i 's|__arm64_clear_cache(beg, end);|__builtin___clear_cache(beg, end);|' \
+        build/_deps/tinycc-src/lib/armflush.c
+fi
+
 cmake --build build --config Release
 cmake --build build --config Release --target GeneratePortO2R
 
