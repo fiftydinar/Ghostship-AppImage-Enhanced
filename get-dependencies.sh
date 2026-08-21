@@ -22,7 +22,7 @@ echo "---------------------------------------------------------------"
 get-debloated-pkgs --add-common --prefer-nano
 
 # Comment this out if you need an AUR package
-#make-aur-package zenity-rs-bin
+make-aur-package zenity-rs-bin
 
 # If the application needs to be manually built that has to be done down here
 echo "Making stable build of Ghostship..."
@@ -38,7 +38,6 @@ patch -Np1 -i "../ghostship-fix-mtxf_copy-incorrect-values.patch"
 cmake . \
     -Bbuild \
     -GNinja \
-    -DNON_PORTABLE=On \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON
 cmake --build build --config Release
 cmake --build build --config Release --target GeneratePortO2R
