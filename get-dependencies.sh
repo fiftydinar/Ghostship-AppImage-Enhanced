@@ -35,10 +35,25 @@ echo "$VERSION" > ~/version
 mkdir -p ./AppDir/bin
 cd ./Ghostship
 patch -Np1 -i "../ghostship-fix-mtxf_copy-incorrect-values.patch"
+
+# On aarch64, GNU ld fails with ".eh_frame_hdr refers to overlapping FDEs"
+# because libtcc1.a is compiled by tcc itself and tcc's arm64 .eh_frame
+# generation is broken. Build it with the system compiler instead (official
+# tinycc knob) and skip .eh_frame_hdr generation as a safety net.
+LINKER_FLAGS=""
+if [ "$ARCH" = "aarch64" ]; then
+    sed -i 's|-C "[$][{]tinycc_SOURCE_DIR[}]/lib"|& arm64-libtcc1-usegcc=yes|' \
+        libultraship/cmake/dependencies/common.cmake
+    grep -q 'arm64-libtcc1-usegcc=yes' \
+        libultraship/cmake/dependencies/common.cmake
+    LINKER_FLAGS="-DCMAKE_EXE_LINKER_FLAGS=-Wl,--no-eh-frame-hdr"
+fi
+
 cmake . \
     -Bbuild \
     -GNinja \
-    -DCMAKE_POSITION_INDEPENDENT_CODE=ON
+    -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+    $LINKER_FLAGS
 cmake --build build --config Release
 cmake --build build --config Release --target GeneratePortO2R
 
