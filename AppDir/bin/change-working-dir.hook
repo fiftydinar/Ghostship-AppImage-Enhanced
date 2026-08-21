@@ -1,11 +1,14 @@
 #!/bin/sh
-dir=$DATADIR/sm64
-mkdir -p "$dir"
-cd "$dir"
+export SHIP_HOME="${SHIP_HOME:-$DATADIR/sm64}"
+mkdir -p "$SHIP_HOME"
 
-for f in ghostship.o2r config.yml gamecontrollerdb.txt; do
-	f="$APPDIR"/bin/"$f" 
-	if [ -f "$f" ]; then
-		cp -f "$f" ./
-	fi
-done
+#dir=$DATADIR/sm64
+#mkdir -p "$dir"
+#cd "$dir"
+
+#for f in ghostship.o2r config.yml gamecontrollerdb.txt; do
+#	f="$APPDIR"/bin/"$f" 
+#	if [ -f "$f" ]; then
+#		cp -f "$f" ./
+#	fi
+#done
