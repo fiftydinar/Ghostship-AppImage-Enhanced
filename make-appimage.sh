@@ -10,9 +10,7 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export DEPLOY_OPENGL=1
 
 # Deploy dependencies
-quick-sharun ./AppDir/bin/* #/usr/bin/zenity
-
-# Additional changes can be done in between here
+quick-sharun ./AppDir/bin/* /usr/bin/zenity
 
 # Turn AppDir into AppImage
 quick-sharun --make-appimage
