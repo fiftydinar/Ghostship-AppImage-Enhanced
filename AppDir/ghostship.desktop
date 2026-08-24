@@ -1,9 +1,0 @@
-[Desktop Entry]
-Name=Ghostship
-Comment=A yet another definitive unofficial port of Super Mario 64
-Exec=Ghostship
-Terminal=false
-Icon=logo
-Type=Application
-StartupWMClass=Ghostship
-Categories=Game;Retro;
