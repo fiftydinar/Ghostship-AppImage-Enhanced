@@ -65,8 +65,5 @@ fi
 cmake --build build --config Release
 cmake --build build --config Release --target GeneratePortO2R
 
-mv -v build/assets ../AppDir/bin
-mv -v build/Ghostship ../AppDir/bin
-mv -v build/config.yml ../AppDir/bin
-mv -v build/ghostship.o2r ../AppDir/bin
+mv -v build/assets build/Ghostship build/config.yml build/ghostship.o2r ../AppDir/bin
 wget -O ../AppDir/bin/gamecontrollerdb.txt https://raw.githubusercontent.com/mdqinc/SDL_GameControllerDB/master/gamecontrollerdb.txt
