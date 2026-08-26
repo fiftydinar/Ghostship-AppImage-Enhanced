@@ -62,8 +62,8 @@ if [ "$ARCH" = "aarch64" ]; then
         build/_deps/tinycc-src/lib/armflush.c
 fi
 
-cmake --build build --config Release
-cmake --build build --config Release --target GeneratePortO2R
+cmake --build build --config Release -j$(nproc)
+cmake --build build --config Release --target GeneratePortO2R -j$(nproc)
 
 mv -v build/assets build/Ghostship build/config.yml build/ghostship.o2r ../AppDir/bin
 wget -O ../AppDir/bin/gamecontrollerdb.txt https://raw.githubusercontent.com/mdqinc/SDL_GameControllerDB/master/gamecontrollerdb.txt
