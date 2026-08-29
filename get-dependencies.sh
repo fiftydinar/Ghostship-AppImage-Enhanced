@@ -50,6 +50,7 @@ fi
 cmake . \
     -Bbuild \
     -GNinja \
+    -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     $LINKER_FLAGS
 
