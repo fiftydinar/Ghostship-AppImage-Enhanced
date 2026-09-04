@@ -10,7 +10,6 @@ pacman -Syu --noconfirm \
     cmake         \
     fmt           \
     libzip        \
-    ninja         \
     nlohmann-json \
     sdl2          \
     spdlog        \
@@ -49,7 +48,6 @@ fi
 
 cmake . \
     -Bbuild \
-    -GNinja \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
     $LINKER_FLAGS
